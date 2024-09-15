@@ -4,9 +4,12 @@ const dotenv = require('dotenv');
 const cors = require('cors');
 const mongoose = require('mongoose');
 const adminRoutes = require('./routes/adminRoutes')
+const testimonialRoutes= require('./routes/testimonialRoutes')
 
 // Load environment variables
 dotenv.config();
+console.log('JWT_SECRET:', process.env.JWT_SECRET);
+console.log('MONGO_URI:', process.env.MONGO_URI);
 
 const app = express();
 
@@ -20,6 +23,10 @@ app.get('/', (req, res) => {
 });
 
 app.use('/api/admin', adminRoutes);
+app.use('/api/testimonials', testimonialRoutes);
+
+
+
 // Database connection
 mongoose
   .connect(process.env.MONGO_URI, {

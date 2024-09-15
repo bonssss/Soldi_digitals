@@ -1,12 +1,13 @@
 const express = require('express');
-const { authenticateToken } = require('../middlewares/authMiddleware');
+const { protect } = require('../middlewares/authMiddleware');
 const { createTestimonial, getTestimonials, updateTestimonial, deleteTestimonial } = require('../controllers/testimonialController');
 
 const router = express.Router();
 
-router.post('/', authenticateToken, createTestimonial);
+// Apply `protect` middleware to routes that require authentication
+router.post('/', protect, createTestimonial);
 router.get('/', getTestimonials);
-router.put('/:id', authenticateToken, updateTestimonial);
-router.delete('/:id', authenticateToken, deleteTestimonial);
+router.put('/:id', protect, updateTestimonial);
+router.delete('/:id', protect, deleteTestimonial);
 
 module.exports = router;

@@ -1,25 +1,27 @@
 const jwt = require('jsonwebtoken');
-const Admin = require('../models/Admin');
 
 // Protect middleware to verify JWT token
-const protect = async (req, res, next) => {
+const protect = (req, res, next) => {
   let token;
 
   if (req.headers.authorization && req.headers.authorization.startsWith('Bearer')) {
     try {
+      // Extract token from Authorization header
       token = req.headers.authorization.split(' ')[1];
 
-      // Decode token and find the admin by ID
+      // Decode token
       const decoded = jwt.verify(token, process.env.JWT_SECRET);
-      req.admin = await Admin.findById(decoded.id).select('-password');
 
-      next();
+      // Check if the token is for an admin
+      if (decoded.id === 'admin') {
+        next();
+      } else {
+        return res.status(401).json({ message: 'Not authorized' });
+      }
     } catch (error) {
       return res.status(401).json({ message: 'Not authorized, token failed' });
     }
-  }
-
-  if (!token) {
+  } else {
     return res.status(401).json({ message: 'Not authorized, no token' });
   }
 };
