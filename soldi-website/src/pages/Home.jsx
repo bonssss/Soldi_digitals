@@ -2,6 +2,8 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import heroImage from '../assets/robot.png'; // Update with the path to your image
 import About from './About';
+import Services from './Services';
+import Contact from './Contact';
 
 const Home = () => {
   return (
@@ -18,7 +20,7 @@ const Home = () => {
               </p>
               <Link
                 to="/contact"
-                className="bg-orange-600 text-white py-3 px-6 rounded-full text-lg font-semibold hover:bg-orange-700 transition duration-300"
+                className="bg-yellow-600 text-white py-3 px-6 rounded-full text-lg font-semibold hover:bg-orange-700 transition duration-300"
               >
                 Get in Touch
               </Link>
@@ -31,6 +33,8 @@ const Home = () => {
       </header>
 
       <About/>
+      <Services/>
+      <Contact/>
     </>
   );
 };

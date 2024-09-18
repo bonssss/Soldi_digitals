@@ -25,7 +25,7 @@ const About = () => {
           </p>
           <a
             href="#contact"
-            className="bg-orange-600 text-white py-3 px-6 rounded-full text-lg font-semibold hover:bg-orange-700 transition duration-300"
+            className="bg-yellow-600 text-white py-3 px-6 rounded-full text-lg font-semibold hover:bg-orange-700 transition duration-300"
           >
             Contact Us
           </a>
